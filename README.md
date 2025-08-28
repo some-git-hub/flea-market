@@ -7,8 +7,8 @@
 1. `git clone git@github.com:some-git-hub/flea-market.git`
 2. `docker-compose up -d -build`
 
-> MySQLはOSによって起動しない場合があるため、
-それぞれのPCに合わせて「docker-compose.yml」を編集してください。
+>MySQLはOSによって起動しない場合があるため、
+>それぞれのPCに合わせて「docker-compose.yml」を編集してください。
 
 **Laravel環境構築**
 
@@ -45,8 +45,8 @@ STRIPE_WEBHOOK_SECRET=whsec_yourwebhooksecret   # Webhookシークレット
 stripe listen --forward-to http://localhost/api/stripe/webhook
 ```
 
-> このコマンドを実行すると、`payment_intent.succeeded` などのイベントが
-> ローカル環境の `/api/stripe/webhook` に転送される。
+>このコマンドを実行すると`payment_intent.succeeded` などのイベントが
+>ローカル環境の `/api/stripe/webhook` に転送される。
 
 ## 使用技術
 
@@ -58,10 +58,7 @@ stripe listen --forward-to http://localhost/api/stripe/webhook
 
 ## ER図
 
-* 以下が本システムのER図です。
-
 ![ER図](./docs/er-diagrams.png)
-
 
 ## URL
 
