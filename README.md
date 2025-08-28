@@ -7,14 +7,15 @@
 1. `git clone git@github.com:some-git-hub/flea-market.git`
 2. `docker-compose up -d -build`
 
-- MySQLはOSによって起動しない場合があるため、それぞれのPCに合わせてdocker-compose.ymlファイルを編集してください。
+> MySQLはOSによって起動しない場合があるため、
+それぞれのPCに合わせて「docker-compose.yml」を編集してください。
 
 **Laravel環境構築**
 
 1. `docker-compose exec php bash`
 2. `composer install`
 3. `cp .env.example .env`
-4. 「.env」に以下の環境変数を追加する。
+4. 「.env」に以下の環境変数を追記する。
 
 ```text
 DB_CONNECTION=mysql
@@ -27,7 +28,7 @@ DB_PASSWORD=laravel_pass
 
 5. `php artisan key:generate`
 6. `php artisan migrate --seed`
-7. 「.env」に以下を追記する。
+7. 「.env」に以下の Stripe の環境変数を追記する。
 
 ```text
 STRIPE_KEY=pk_test_yourkey                      # 公開可能キー (Publishable Key)
@@ -36,7 +37,7 @@ STRIPE_WEBHOOK_SECRET=whsec_yourwebhooksecret   # Webhookシークレット
 ```
 
 - STRIPE_KEY と STRIPE_SECRET は Stripe ダッシュボードから取得する。
-- STRIPE_WEBHOOK_SECRET は Webhook 作成時に Stripe から取得
+- STRIPE_WEBHOOK_SECRET は Webhook 作成時に Stripe から取得する。
 
 8. Stripe CLI をインストールしてログイン後、以下のコマンドを実行する。
 
@@ -44,8 +45,8 @@ STRIPE_WEBHOOK_SECRET=whsec_yourwebhooksecret   # Webhookシークレット
 stripe listen --forward-to http://localhost/api/stripe/webhook
 ```
 
->* このコマンドを実行すると、`payment_intent.succeeded` などのイベントが
-ローカル環境の `/api/stripe/webhook` に転送される。*
+> このコマンドを実行すると、`payment_intent.succeeded` などのイベントが
+> ローカル環境の `/api/stripe/webhook` に転送される。
 
 ## 使用技術
 
