@@ -7,7 +7,7 @@
 1. `git clone git@github.com:some-git-hub/flea-market.git`
 2. `docker-compose up -d -build`
 
-> MySQLはOSによって起動しない場合があるため、
+> MySQLはOSによって起動しない場合があるため、  
 > それぞれのPCに合わせて「docker-compose.yml」を編集してください。
 
 **Laravel環境構築**
@@ -36,25 +36,26 @@ STRIPE_SECRET=sk_test_yoursecret                # 秘密キー (Secret Key)
 STRIPE_WEBHOOK_SECRET=whsec_yourwebhooksecret   # Webhookシークレット
 ```
 
-> STRIPE_KEY と STRIPE_SECRET は Stripe ダッシュボードから取得する。
+> STRIPE_KEY と STRIPE_SECRET は Stripe ダッシュボードから取得する。  
 > STRIPE_WEBHOOK_SECRET は Webhook 作成時に Stripe から取得する。
 
 ### Stripe Webhook 開発環境でのテスト
 1. Stripe CLI をインストールしてログインする。
 
-2. 以下のコマンドを実行すると、  外部の Stripe イベントをテストできる。。
+2. 以下のコマンドを実行すると、外部の Stripe イベントをテストできる。
 
 ```bash
 stripe listen --forward-to http://localhost/api/stripe/webhook
 ```
 
-3. 別のターミナルで以下のコマンドを実行すると、  任意の Stripe イベントをテストできる(例:payment_intent.succeeded)。
+3. 別のターミナルで以下のコマンドを実行すると、  
+任意の Stripe イベント(例:payment_intent.succeeded)をテストできる。
 
 ```bash
 stripe trigger payment_intent.succeeded
 ```
 
-> 必要に応じて --add payment_intent:metadata[...] を指定して metadata を設定可能...
+> 必要に応じて --add payment_intent:metadata[...] を指定して metadata を設定する。
 
 ## 使用技術
 
