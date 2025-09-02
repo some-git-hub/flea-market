@@ -49,7 +49,7 @@ stripe listen --forward-to http://localhost/api/stripe/webhook
 ```
 
 3. 別のターミナルで以下のコマンドを実行すると、  
-任意の Stripe イベント(例:payment_intent.succeeded)をテストできる。
+任意の Stripe イベント ( 例 : payment_intent.succeeded ) をテストできる。
 
 ```bash
 stripe trigger payment_intent.succeeded
