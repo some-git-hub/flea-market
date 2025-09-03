@@ -39,7 +39,8 @@ STRIPE_WEBHOOK_SECRET=whsec_yourwebhooksecret   # Webhookシークレット
 > STRIPE_KEY と STRIPE_SECRET は Stripe ダッシュボードから取得する。  
 > STRIPE_WEBHOOK_SECRET は Webhook 作成時に Stripe から取得する。
 
-### Stripe Webhook 開発環境でのテスト
+**Stripe Webhook 開発環境でのテスト**
+
 1. Stripe CLI をインストールしてログインする。
 
 2. 以下のコマンドを実行すると、外部の Stripe イベントをテストできる。
