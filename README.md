@@ -68,7 +68,7 @@ stripe trigger payment_intent.succeeded
 
 ## ER図
 
-![ER図](./docs/er-diagrams.png)
+![ER図](./docs/ER-diagram.png)
 
 ## URL
 
