@@ -53,7 +53,13 @@ stripe listen --forward-to http://localhost/api/stripe/webhook
 任意の Stripe イベント ( 例 : payment_intent.succeeded ) をテストできる。
 
 ```bash
-stripe trigger payment_intent.succeeded
+stripe trigger payment_intent.succeeded \
+ --add "payment_intent:metadata[user_id]=1" \
+ --add "payment_intent:metadata[item_id]=1" \
+ --add "payment_intent:metadata[payment_method]=1" \
+ --add "payment_intent:metadata[postal_code]=000-0000" \
+ --add "payment_intent:metadata[address]=testAddress" \
+ --add "payment_intent:metadata[building]=testBuilding"
 ```
 
 > 必要に応じて --add payment_intent:metadata[...] を指定して metadata を設定する。
@@ -69,7 +75,6 @@ stripe trigger payment_intent.succeeded
 ## ER図
 
 ![ER図](./docs/ER-diagram.png)
-
 
 ## URL
 
