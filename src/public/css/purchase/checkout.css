@@ -1,0 +1,167 @@
+.all__wrapper {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.purchase-info{
+    width: 54%;
+    margin-top: 100px;
+}
+
+.item-info {
+    width: 100%;
+    padding-bottom: 60px;
+    padding-left: 30px;
+    border-bottom: 1px solid #000;
+    display: flex;
+}
+
+.item-image{
+    width: 178px;
+    height: 178px;
+}
+
+.item-info__detail{
+    width: 62%;
+    margin-left: 50px;
+}
+
+.item-info__name{
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+.item-info__price{
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 27px;
+}
+
+.item-info__price-number{
+    font-size: 30px;
+}
+
+.payment-method{
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #000;
+}
+
+.delivery-address{
+    padding-top: 10px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #000;
+}
+
+.delivery-address__link-address-edit{
+    color: #0073CC;
+    background-color: #fff;
+    border: none;
+    text-decoration: none;
+}
+
+.delivery-address__address-building{
+    width: 560px;
+}
+
+.payment-method__title{
+    margin: 0 40px;
+    font-size: 20px;
+}
+
+.payment-method__note{
+    margin-left: 40px;
+    color: #f00;
+}
+
+.delivery-address__title{
+    margin-left: 40px;
+    margin-right: 72%;
+    font-size: 20px;
+}
+
+.payment-method__select{
+    width: 265px;
+    height: 31px;
+    margin-top: 20px;
+    margin-left: 100px;
+    border: 1px solid #5f5f5f;
+    border-radius: 3px;
+}
+
+.payment-method__option{
+    color: #fff;
+    background-color: #636769;
+}
+
+.delivery-address__inner{
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.delivery-address__contents{
+    margin-left: 100px;
+    font-size: 20px;
+}
+
+.delivery-address__address{
+    max-width: 84%;
+    display: inline-block;
+}
+
+.delivery-address__building {
+    max-width: 84%;
+    display: inline-block;
+}
+
+.confirm-table{
+    margin-top: 100px;
+    margin-left: 30px;
+}
+
+.confirm-table__wrapper{
+    width: 440px;
+    height: 230px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.confirm-table__row-price{
+    border-bottom: 1px solid #000;
+}
+
+.confirm-table__price-yen,
+.confirm-table__label{
+    font-size: 20px;
+}
+
+.confirm-table__value{
+    width: 240px;
+    font-size: 24px;
+}
+
+.purchase-form{
+    text-align: center;
+}
+
+.purchase-form__button-submit {
+    width: 440px;
+    height: 60px;
+    margin-top: 60px;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 26px;
+    background-color: #f55;
+    cursor: pointer;
+}
+
+.purchase-info__error-message{
+    margin-left: 100px;
+    color: #f00;
+}

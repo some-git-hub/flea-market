@@ -5,6 +5,7 @@
 ### Dockerビルド
 
 1. `git clone git@github.com:some-git-hub/flea-market.git`
+
 2. `docker-compose up -d --build`
 
 > MySQLはOSによって起動しない場合があるため、  
@@ -14,8 +15,11 @@
 ### Laravel 環境構築
 
 1. `docker-compose exec php bash`
+
 2. `composer install`
+
 3. `cp .env.example .env`
+
 4. 「.env」に以下の環境変数を追記する。
 
 ```text
@@ -28,7 +32,9 @@ DB_PASSWORD=laravel_pass
 ```
 
 5. `php artisan key:generate`
+
 6. `php artisan migrate --seed`
+
 7. 「.env」に以下の Stripe の環境変数を追記する。
 
 ```text
@@ -41,7 +47,7 @@ STRIPE_WEBHOOK_SECRET=whsec_yourwebhooksecret   # Webhookシークレット
 > STRIPE_WEBHOOK_SECRET は Webhook 作成時に Stripe から取得する。
 
 
-### Stripe Webhook 環境構築
+### Stripe 環境構築
 
 1. Stripe CLI をインストールしてログインする。
 
@@ -56,24 +62,26 @@ stripe listen --forward-to http://localhost/api/stripe/webhook
 
 ```bash
 stripe trigger payment_intent.succeeded \
- --add "payment_intent:metadata[user_id]=1" \
- --add "payment_intent:metadata[item_id]=1" \
- --add "payment_intent:metadata[payment_method]=1" \
- --add "payment_intent:metadata[postal_code]=000-0000" \
- --add "payment_intent:metadata[address]=testAddress" \
- --add "payment_intent:metadata[building]=testBuilding"
+  --add "payment_intent:metadata[user_id]=1" \
+  --add "payment_intent:metadata[item_id]=1" \
+  --add "payment_intent:metadata[payment_method]=1" \
+  --add "payment_intent:metadata[postal_code]=000-0000" \
+  --add "payment_intent:metadata[address]=testAddress" \
+  --add "payment_intent:metadata[building]=testBuilding"
 ```
 
 **コンビニ決済（Stripe）**
-- 商品価格が30万円以上の場合、コンビニ支払いを選択できません。
-- コンビニ支払いを選択した場合、一時的に「入金待ち(status=2)」になります。
-- Checkout セッションの有効期限は 24時間です。
-- 24時間以内に入金が確認できなかった場合、注文はキャンセルとなり「在庫あり(status=0)」に戻ります。
+- 商品価格が30万円以上の場合、コンビニ支払いを選択できない。
+- コンビニ支払いを選択した場合、一時的に「入金待ち(status=2)」になる。
+- Checkout セッションの有効期限は 3日後の23時59分となっている。
+- 24時間以内に入金が確認できなかった場合、注文はキャンセルとなり「在庫あり(status=0)」に戻る。
 
 
 ### MailHog 環境構築
 
-1. 「.env」に以下の環境変数を追記する。
+1. MailHog をインストールして起動する。
+
+2. 「.env」に以下の環境変数を追記する。
 
 ```text
 MAIL_MAILER=smtp
@@ -84,7 +92,7 @@ MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
 ```
 
-2. http://localhost:8025 にアクセスすると、開発環境でメール送信を確認できる。
+3. http://localhost:8025 にアクセスすると、開発環境でメール送信を確認できる。
 
 
 ## 使用技術

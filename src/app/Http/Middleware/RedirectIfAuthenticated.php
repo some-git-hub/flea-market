@@ -23,6 +23,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                if (session('newly_registered')) {
+                    session()->forget('newly_registered');
+                    return redirect()->route('mypage.edit');
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }
