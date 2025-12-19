@@ -5,7 +5,9 @@
 /src/storage/*
 !/src/storage/app/
 !/src/storage/app/public/
-!/src/storage/app/public/shops/
+!/src/storage/app/public/items/
+!/src/storage/app/public/message_images/
+!/src/storage/app/public/profile_images/
 !/src/storage/framework/
 !/src/storage/framework/cache/
 !/src/storage/framework/views/
