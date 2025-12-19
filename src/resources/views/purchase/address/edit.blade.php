@@ -6,12 +6,16 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- 住所の変更 -->
     <form class="delivery-form__wrapper" action="{{ route('address.update', $item->id) }}" method="post">
         @csrf
         @method('PUT')
         <h1 class="delivery-form__heading">
             住所の変更
         </h1>
+
+        <!-- 郵便番号 -->
         <div class="delivery-form__container">
             <div class="delivery-form__inner">
                 <label class="delivery-form__label">
@@ -27,6 +31,8 @@
                 @enderror
             </div>
         </div>
+
+        <!-- 住所 -->
         <div class="delivery-form__container">
             <div class="delivery-form__inner">
                 <label class="delivery-form__label">
@@ -42,6 +48,8 @@
                 @enderror
             </div>
         </div>
+
+        <!-- 建物名 -->
         <div class="delivery-form__container">
             <div class="delivery-form__inner">
                 <label class="delivery-form__label">
@@ -57,6 +65,8 @@
                 @enderror
             </div>
         </div>
+
+        <!-- 更新ボタン -->
         <div class="address-edit__button-area">
             <button type="submit" class="address-edit__button-submit">更新する</button>
         </div>

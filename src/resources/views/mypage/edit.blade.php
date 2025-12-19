@@ -6,6 +6,8 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- プロフィールの編集 -->
     <form class="profile-form__wrapper" action="{{ isset($user->address) ? route('mypage.update') : route('mypage.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         @if(isset($user->address))
@@ -14,6 +16,8 @@
         <h1 class="profile-form__heading">
             プロフィール設定
         </h1>
+
+        <!-- プロフィール画像 -->
         <div class="profile-form__container-image">
             <div class="profile-form__image-area">
                 <img id="preview" class="profile-form__image" src="{{ $previewSrc }}">
@@ -32,6 +36,8 @@
                 @enderror
             </div>
         </div>
+
+        <!-- ユーザー名 -->
         <div class="profile-form__container">
             <label class="profile-form__label">
                 ユーザー名
@@ -47,6 +53,8 @@
                 @enderror
             </div>
         </div>
+
+        <!-- 郵便番号 -->
         <div class="profile-form__container">
             <label class="profile-form__label">
                 郵便番号
@@ -62,6 +70,8 @@
                 @enderror
             </div>
         </div>
+
+        <!-- 住所 -->
         <div class="profile-form__container">
             <label class="profile-form__label">
                 住所
@@ -77,6 +87,8 @@
                 @enderror
             </div>
         </div>
+
+        <!-- 建物名 -->
         <div class="profile-form__container">
             <label class="profile-form__label">
                 建物名
@@ -92,6 +104,8 @@
                 @enderror
             </div>
         </div>
+
+        <!-- 更新ボタン -->
         <div class="profile-form__button-area">
             <button type="submit" class="profile-form__button-submit">更新する</button>
         </div>

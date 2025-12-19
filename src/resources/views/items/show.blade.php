@@ -6,26 +6,41 @@
 
 @section('content')
 <div class="all__wrapper">
+    <!-- 商品詳細 -->
     <h1 class="item-detail__title">商品詳細</h1>
+
+    <!-- 商品画像 -->
     <div class="item-image-area">
         <img src="{{ asset('storage/' . $item->item_image) }}" alt="{{ $item->name }}" class="item-image">
         @if($item->status !== 0)
         <span class="item-card__badge-sold">Sold</span>
         @endif
     </div>
+
+    <!-- 商品情報 -->
     <div class="item-detail__container">
+
+        <!-- 商品名 -->
         <h2 class="item-name">
             {{ $item->name }}
         </h2>
+
+        <!-- ブランド名 -->
         <p class="item-brand">
             {{ $item->brand }}
         </p>
+
+        <!-- 販売価格 -->
         <p class="item-price">
             <span class="item-price-yen">￥</span>
             <span class="item-price-number">{{ number_format($item->price) }}</span>
             <span class="item-price-tax">(税込)</span>
         </p>
+
+        <!-- お気に入り登録数とコメント数 -->
         <div class="item-reaction">
+
+            <!-- お気に入り登録数 -->
             <form class="item-reaction__contents" id="favorite-form">
                 @csrf
                 @auth
@@ -43,20 +58,30 @@
                 @endauth
                 <span id="favorite-count">{{ $item->favorites->count() }}</span>
             </form>
+
+            <!-- コメント数 -->
             <div class="item-reaction__contents">
                 <img class="item-reaction__logo" src="{{ asset('images/comment_logo.png') }}" alt="comment_logo">
                 <span class="item-reaction__number" id="comment-count-reaction">{{ $item->comments->count() }}</span>
             </div>
         </div>
+
+        <!-- 購入手続き遷移ボタン -->
         <div class="item-purchase__link-area">
             <a href="{{ route('purchase.checkout', $item->id) }}" class="item-purchase__link-checkout">購入手続きへ</a>
         </div>
+
+        <!-- 商品説明 -->
         <div class="item-description">
             <h2 class="item-description__title">商品説明</h2>
             <p class="item-description__content">{{ $item->description }}</p>
         </div>
+
+        <!-- 商品詳細 -->
         <div class="item-info">
             <h2 class="item-info__title">商品の情報</h2>
+
+            <!-- カテゴリー -->
             <div class="item-category">
                 <h3 class="item-category__title">カテゴリー</h3>
                 <p class="item-category__contents">
@@ -65,6 +90,8 @@
                     @endforeach
                 </p>
             </div>
+
+            <!-- 状態 -->
             <div class="item-condition">
                 <h3 class="item-condition__title">商品の状態</h3>
                 <p class="item-condition__content">
@@ -72,10 +99,14 @@
                 </p>
             </div>
         </div>
+
+        <!-- コメント一覧 -->
         <div class="item-comment">
             <h2 class="item-comment__title">
                 コメント(<span id="comment-count-title">{{ $item->comments->count() }}</span>)
             </h2>
+
+            <!-- ユーザーのコメント -->
             <div class="item-comment__contents" id="comments">
                 @foreach($item->comments as $comment)
                 <div class="item-comment__content">
@@ -94,6 +125,8 @@
                 </div>
                 @endforeach
             </div>
+
+            <!-- コメント入力欄 -->
             <form id="comment-form" class="comment-form" method="POST" action="{{ route('comment.store', $item->id) }}">
                 @csrf
                 <h3 class="comment-form__title">商品へのコメント</h3>
@@ -113,7 +146,7 @@
 @section('js')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // いいね機能
+    // お気に入り登録機能
     const favoriteIcon  = document.getElementById('favorite-icon');
     const favoriteImg   = document.getElementById('favorite-img');
     const favoriteCount = document.getElementById('favorite-count');

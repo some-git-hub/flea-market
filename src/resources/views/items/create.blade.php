@@ -6,11 +6,15 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- 商品の出品 -->
     <form action="{{ route('items.store') }}" class="create-form" method="post" enctype="multipart/form-data">
         @csrf
         <h1 class="create-form__heading">
             商品の出品
         </h1>
+
+        <!-- 商品画像 -->
         <div class="item-image__container">
             <h2 class="item-image__title">
                 商品画像
@@ -33,10 +37,14 @@
                 @enderror
             </div>
         </div>
+
+        <!-- 商品詳細 -->
         <div class="create-form__wrapper">
             <h2 class="item-detail__title">
                 商品の詳細
             </h2>
+
+            <!-- カテゴリー -->
             <div class="item-detail__container">
                 <h3 class="item-category__title">
                     カテゴリー
@@ -58,6 +66,8 @@
                     @enderror
                 </div>
             </div>
+
+            <!-- 状態 -->
             <div class="item-detail__container">
                 <h3 class="item-condition__title">
                     商品の状態
@@ -81,10 +91,14 @@
                 </div>
             </div>
         </div>
+
+        <!-- 商品情報 -->
         <div class="create-form__wrapper">
             <h2 class="item-detail__title">
                 商品名と説明
             </h2>
+
+            <!-- 商品名 -->
             <div class="item-detail__container">
                 <h3 class="item-name__title">
                     商品名
@@ -100,6 +114,8 @@
                     @enderror
                 </div>
             </div>
+
+            <!-- ブランド名 -->
             <div class="item-detail__container">
                 <h3 class="item-brand__title">
                     ブランド名
@@ -115,6 +131,8 @@
                     @enderror
                 </div>
             </div>
+
+            <!-- 商品説明 -->
             <div class="item-detail__container">
                 <h3 class="item-description__title">
                     商品の説明
@@ -130,6 +148,8 @@
                     @enderror
                 </div>
             </div>
+
+            <!-- 販売価格 -->
             <div class="item-detail__container">
                 <h3 class="item-price__title">
                     販売価格
@@ -146,6 +166,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- 出品ボタン -->
         <div class="create-form__button-area">
             <button type="submit" class="create-form__button-submit">出品する</button>
         </div>

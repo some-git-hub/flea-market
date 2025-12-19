@@ -90,10 +90,14 @@
 }
 
 
+/* ------------------------------------ */
+/*      レスポンシブデザイン(1080px)      */
+/* ------------------------------------ */
+
 
 @media screen and (max-width: 1080px){
 
-.item-card__badge-sold {
+    .item-card__badge-sold {
         padding: 5px 16px;
         color: #fff;
         background-color: red;
@@ -105,10 +109,11 @@
         z-index: 10;
     }
 
-.item-card {
-    width: 20%;
-    aspect-ratio: 4/5;
-    margin-top: 40px;
-    position: relative;
-}
+    .item-card {
+        width: 20%;
+        aspect-ratio: 4/5;
+        margin-top: 40px;
+        position: relative;
+    }
+
 }

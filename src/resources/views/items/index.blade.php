@@ -6,6 +6,8 @@
 
 @section('content')
 <div class="all__wrapper">
+
+    <!-- タブ -->
     <div class="nav-tabs">
         <div class="nav-tab__recommend">
             <a href="{{ $keyword ? '/?keyword=' . urlencode($keyword) : '/' }}" class="nav-tab__link-recommend {{ request('tab', 'recommend') === 'recommend' ? 'active' : '' }}">
@@ -18,6 +20,8 @@
             </a>
         </div>
     </div>
+
+    <!-- 商品一覧 -->
     <div class="items-list" id="items-list">
         @if($tab === 'recommend')
             @foreach($recommendItems as $item)

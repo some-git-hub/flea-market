@@ -178,9 +178,15 @@
     color: #f00;
 }
 
+
+/* ------------------------------------ */
+/*      レスポンシブデザイン(1080px)      */
+/* ------------------------------------ */
+
+
 @media screen and (max-width: 1380px) {
 
-.all__wrapper {
+    .all__wrapper {
         width: 90%;
         margin: 0 auto;
         display: flex;
@@ -189,46 +195,46 @@
         flex-direction: column;
     }
 
-.purchase-info {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 60px;
-}
+    .purchase-info {
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 60px;
+    }
 
-.item-image {
-    width: 280px;
-    height: 280px;
-}
+    .item-image {
+        width: 280px;
+        height: 280px;
+    }
 
-.item-info {
-    width: 100%;
-    padding-bottom: 60px;
-    padding-left: 0px;
-    border-bottom: 1px solid #000;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
+    .item-info {
+        width: 100%;
+        padding-bottom: 60px;
+        padding-left: 0px;
+        border-bottom: 1px solid #000;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
 
-.item-info__detail {
-    width: 82%;
-    margin-top: 40px;
-    margin-left: 0px;
-}
+    .item-info__detail {
+        width: 82%;
+        margin-top: 40px;
+        margin-left: 0px;
+    }
 
-.confirm-table {
-    margin: 40px 0;
-}
+    .confirm-table {
+        margin: 40px 0;
+    }
 
-.payment-method__note {
-    margin-left: 30px;
-    color: #f00;
-}
+    .payment-method__note {
+        margin-left: 30px;
+        color: #f00;
+    }
 
-.delivery-address__title {
-    margin-left: 40px;
-    margin-right: 66%;
-    font-size: 20px;
-}
+    .delivery-address__title {
+        margin-left: 40px;
+        margin-right: 66%;
+        font-size: 20px;
+    }
 
 }
