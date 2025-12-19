@@ -8,19 +8,19 @@
 <div class="all__wrapper">
     <form action="{{ route('items.store') }}" class="create-form" method="post" enctype="multipart/form-data">
         @csrf
-        <h2 class="create-form__heading">
+        <h1 class="create-form__heading">
             商品の出品
-        </h2>
+        </h1>
         <div class="item-image__container">
-            <h3 class="item-image__title">
+            <h2 class="item-image__title">
                 商品画像
-            </h3>
+            </h2>
             <div class="item-image__inner">
                 <div class="item-image__input-area">
                     <label for="item_image" class="item-image__input-label" id="item_image_label">
                         画像を選択する
                     </label>
-                    <input type="file" name="item_image" id="item_image" class="item-image__input" accept="image/*">
+                    <input type="file" name="item_image" id="item_image" class="item-image__input" accept=".png,.jpeg">
                 </div>
                 <div class="item-image__preview" id="item_image_preview"></div>
                 <button type="button" id="item_image_clear" class="item-image__button-clear">
@@ -34,13 +34,13 @@
             </div>
         </div>
         <div class="create-form__wrapper">
-            <h3 class="item-detail__title">
+            <h2 class="item-detail__title">
                 商品の詳細
-            </h3>
+            </h2>
             <div class="item-detail__container">
-                <h4 class="item-category__title">
+                <h3 class="item-category__title">
                     カテゴリー
-                </h4>
+                </h3>
                 <div class="item-category__inner">
                     <div class="item-category__checkbox-area">
                         @foreach($categories as $category)
@@ -59,9 +59,9 @@
                 </div>
             </div>
             <div class="item-detail__container">
-                <h4 class="item-condition__title">
+                <h3 class="item-condition__title">
                     商品の状態
-                </h4>
+                </h3>
                 <div class="item-condition__inner">
                     <div class="item-condition__select-area">
                         <select name="condition" class="item-condition__select">
@@ -82,13 +82,13 @@
             </div>
         </div>
         <div class="create-form__wrapper">
-            <h3 class="item-detail__title">
+            <h2 class="item-detail__title">
                 商品名と説明
-            </h3>
+            </h2>
             <div class="item-detail__container">
-                <h4 class="item-name__title">
+                <h3 class="item-name__title">
                     商品名
-                </h4>
+                </h3>
                 <div class="item-name__inner">
                     <div class="item-name__input-area">
                         <input type="text" maxlength="255" name="name" class="item-name__input" value="{{ old('name', $item->name ?? '') }}">
@@ -101,9 +101,9 @@
                 </div>
             </div>
             <div class="item-detail__container">
-                <h4 class="item-brand__title">
+                <h3 class="item-brand__title">
                     ブランド名
-                </h4>
+                </h3>
                 <div class="item-brand__inner">
                     <div class="item-brand__input-area">
                         <input type="text" maxlength="255" name="brand" class="item-brand__input" value="{{ old('brand', $item->brand ?? '') }}">
@@ -116,9 +116,9 @@
                 </div>
             </div>
             <div class="item-detail__container">
-                <h4 class="item-description__title">
+                <h3 class="item-description__title">
                     商品の説明
-                </h4>
+                </h3>
                 <div class="item-description__inner">
                     <div class="item-description__input-area">
                         <textarea maxlength="255" name="description" class="item-description__input">{{ old('description', $item->description ?? '') }}</textarea>
@@ -131,9 +131,9 @@
                 </div>
             </div>
             <div class="item-detail__container">
-                <h4 class="item-price__title">
+                <h3 class="item-price__title">
                     販売価格
-                </h4>
+                </h3>
                 <div class="item-price__inner">
                     <div class="item-price__input-area">
                         <input type="text" name="price" class="item-price__input" value="{{ old('price', $item->price ?? '') }}">

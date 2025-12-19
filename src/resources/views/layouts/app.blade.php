@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>フリマアプリ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
@@ -16,10 +17,10 @@
         <div class="header__inner">
             <div class="header-logo">
                 <a href="{{ route('items.index') }}" class="header-logo__link-index">
-                    <img class="header-logo__image" src="{{ asset('storage/images/logo.svg') }}" alt="Logo">
+                    <img class="header-logo__image" src="{{ asset('images/logo.svg') }}" alt="Logo">
                 </a>
             </div>
-            @unless (in_array(Route::currentRouteName(), ['login', 'register', 'verification.notice']))
+            @unless (in_array(Route::currentRouteName(), ['login', 'register', 'verification.notice', 'items.trade']))
             <form method="GET" action="{{ route('items.index') }}" class="search-box">
                 @if(!empty($tab) && $tab !== 'recommend')
                 <input type="hidden" name="tab" value="{{ $tab }}">

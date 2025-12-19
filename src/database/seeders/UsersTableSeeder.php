@@ -15,22 +15,35 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        // ダミーデータ CO01～CO05 を出品したユーザー
+        User::firstOrCreate(
+            [
+                'email' => 'test1@example.com'
+            ],
+            [
+                'name' => 'テストユーザー1',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        // ダミーデータ CO06～CO10 を出品したユーザー
+        User::firstOrCreate(
+            [
+                'email' => 'test2@example.com'
+            ],
+            [
+                'name' => 'テストユーザー2',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        // 何も出品してないユーザー
         User::firstOrCreate(
             [
                 'email' => 'test@example.com'
             ],
             [
                 'name' => 'テストユーザー',
-                'password' => Hash::make('password'),
-            ]
-        );
-
-        User::firstOrCreate(
-            [
-                'email' => 'other@example.com'
-            ],
-            [
-                'name' => '他のユーザー',
                 'password' => Hash::make('password'),
             ]
         );

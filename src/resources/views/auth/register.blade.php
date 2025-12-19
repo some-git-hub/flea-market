@@ -8,14 +8,14 @@
 <div class="all__wrapper">
     <form class="register-form__wrapper" action="{{ route('register') }}" method="post">
         @csrf
-        <h2 class="register-form__heading">
+        <h1 class="register-form__heading">
             会員登録
-        </h2>
+        </h1>
         <div class="register-form__container">
-            <label class="register-form__label">
-                ユーザー名
-            </label>
             <div class="register-form__inner">
+                <label class="register-form__label">
+                    ユーザー名
+                </label>
                 <div class="register-form__input-area">
                     <input class="register-form__input" type="text" maxlength="20" name="name" value="{{ old('name') }}">
                 </div>
@@ -27,10 +27,10 @@
             </div>
         </div>
         <div class="register-form__container">
-            <label class="register-form__label">
-                メールアドレス
-            </label>
             <div class="register-form__inner">
+                <label class="register-form__label">
+                    メールアドレス
+                </label>
                 <div class="register-form__input-area">
                     <input class="register-form__input" type="text" maxlength="255" name="email" value="{{ old('email') }}">
                 </div>
@@ -42,10 +42,10 @@
             </div>
         </div>
         <div class="register-form__container">
-            <label class="register-form__label">
-                パスワード
-            </label>
             <div class="register-form__inner">
+                <label class="register-form__label">
+                    パスワード
+                </label>
                 <div class="register-form__input-area">
                     <input class="register-form__input" type="password" name="password">
                 </div>
@@ -57,10 +57,10 @@
             </div>
         </div>
         <div class="register-form__container">
-            <label class="register-form__label">
-                確認用パスワード
-            </label>
             <div class="register-form__inner">
+                <label class="register-form__label">
+                    確認用パスワード
+                </label>
                 <div class="register-form__input-area">
                     <input class="register-form__input" type="password" name="password_confirmation">
                 </div>

@@ -8,14 +8,14 @@
 <div class="all__wrapper">
     <form class="login-form__wrapper" action="{{ route('login') }}" method="post">
         @csrf
-        <h2 class="login-form__heading">
+        <h1 class="login-form__heading">
             ログイン
-        </h2>
+        </h1>
         <div class="login-form__container">
-            <label class="login-form__label">
-                メールアドレス
-            </label>
             <div class="login-form__inner">
+                <label class="login-form__label">
+                    メールアドレス
+                </label>
                 <div class="login-form__input-area">
                     <input class="login-form__input" type="text" maxlength="255" name="email" value="{{ old('email') }}">
                 </div>
@@ -27,10 +27,10 @@
             </div>
         </div>
         <div class="login-form__container">
-            <label class="login-form__label">
-                パスワード
-            </label>
             <div class="login-form__inner">
+                <label class="login-form__label">
+                    パスワード
+                </label>
                 <div class="login-form__input-area">
                     <input class="login-form__input" type="password" name="password">
                 </div>

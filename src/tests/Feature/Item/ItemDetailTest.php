@@ -37,7 +37,7 @@ class ItemDetailTest extends TestCase
         $response = $this->get(route('items.show', $item->id))->assertStatus(200);
 
         $response->assertSee('<img', false);
-        $response->assertSee('storage/'.$item->item_image, false);
+        $response->assertSee($item->item_image, false);
 
         $response->assertSee($item->name);
         $response->assertSee($item->brand);

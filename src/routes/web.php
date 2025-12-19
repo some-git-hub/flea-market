@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ExhibitionController;
+use App\Http\Controllers\TradeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\VerifyController;
@@ -79,6 +80,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/purchase/address/{item_id}', [PurchaseController::class, 'edit'])->name('address.edit');
     Route::put('/purchase/address/{item_id}/update', [PurchaseController::class, 'update'])->name('address.update');
     Route::post('/purchase/{item_id}/save-payment-method', [PurchaseController::class, 'savePaymentMethod'])->name('purchase.savePaymentMethod');
+
+    // 商品の取引
+    Route::get('/trade/{item}', [TradeController::class, 'show'])->name('items.trade');
+    Route::post('/trade/{item}/message', [TradeController::class, 'store'])->name('message.store');
+    Route::patch('/messages/{message}', [TradeController::class, 'update'])->name('messages.update');
+    Route::delete('/messages/{message}', [TradeController::class, 'destroy'])->name('messages.destroy');
+    Route::post('/trade/{item}/complete', [TradeController::class, 'complete'])->name('trade.complete');
+    Route::post('/items/{item}/review', [TradeController::class, 'storeReview'])->name('reviews.store');
+
 
     // 商品の出品
     Route::get('/sell', [ExhibitionController::class, 'create'])->name('items.create');

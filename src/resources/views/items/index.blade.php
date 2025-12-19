@@ -28,9 +28,7 @@
                     <span class="item-card__badge-sold">Sold</span>
                     @endif
                 </a>
-                <p class="item-name">
-                    {{ $item->name }}
-                </p>
+                <p class="item-name">{{ $item->name }}</p>
             </div>
             @endforeach
         @elseif($tab === 'mylist')
@@ -43,9 +41,7 @@
                         <span class="item-card__badge-sold">Sold</span>
                         @endif
                     </a>
-                    <p class="item-name">
-                        {{ $item->name }}
-                    </p>
+                    <p class="item-name">{{ $item->name }}</p>
                 </div>
                 @endforeach
             @endauth

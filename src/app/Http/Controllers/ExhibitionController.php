@@ -41,7 +41,7 @@ class ExhibitionController extends Controller
             'description' => $data['description'],
             'item_image'  => $imagePath,
             'condition'   => $data['condition'],
-            'status'      => 0, // 出品中:0, 購入済み:1, 入金待ち:2
+            'status'      => 0, // 出品中:0, 入金待ち:1, 取引中:2, 取引完了:3
         ]);
 
         $item->categories()->attach($data['category']);

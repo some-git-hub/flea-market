@@ -14,7 +14,6 @@ services:
       - flea-network
 
   php:
-    container_name: php
     build: ./docker/php
     volumes:
       - ./src:/var/www/
@@ -24,7 +23,6 @@ services:
       - flea-network
 
   mysql:
-    container_name: mysql
     image: mysql:8.0.26
     environment:
       MYSQL_ROOT_PASSWORD: root

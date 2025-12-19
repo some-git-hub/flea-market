@@ -49,6 +49,16 @@ class Item extends Model
         return $this->hasOne(Purchase::class);
     }
 
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeRecommended($query)
     {
         return $query->orderBy('created_at', 'desc');

@@ -45,14 +45,14 @@ class ItemFavoriteTest extends TestCase
         $response = $this->get(route('items.show', $item->id))->assertStatus(200);
 
         $response->assertSee('<img', false);
-        $response->assertSee('storage/images/favorite_logo.png', false);
+        $response->assertSee('images/favorite_logo_inactive.png', false);
 
         $response = $this->post(route('favorite.toggle', $item->id))->assertStatus(200);
 
         $response = $this->get(route('items.show', $item->id))->assertStatus(200);
 
         $response->assertSee('<img', false);
-        $response->assertSee('storage/images/favorite_logo_active.png', false);
+        $response->assertSee('images/favorite_logo_active.png', false);
     }
 
     /**
@@ -84,6 +84,6 @@ class ItemFavoriteTest extends TestCase
         $response = $this->get(route('items.show', $item->id))->assertStatus(200);
 
         $response->assertSee('<img', false);
-        $response->assertSee('storage/images/favorite_logo.png', false);
+        $response->assertSee('images/favorite_logo_inactive.png', false);
     }
 }

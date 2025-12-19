@@ -18,8 +18,8 @@ class CreatePurchasesTable extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('restrict');
             $table->foreignId('item_id')->constrained()->onDelete('restrict');
             $table->foreignId('delivery_address_id')->constrained()->onDelete('restrict');
-            $table->unsignedBigInteger('price');
-            $table->unsignedTinyInteger('payment_method')->default(0);
+            $table->bigInteger('price');
+            $table->tinyInteger('payment_method')->default(0); // 1: コンビニ支払い, 2: カード支払い
             $table->timestamps();
         });
     }

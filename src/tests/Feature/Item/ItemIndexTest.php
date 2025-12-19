@@ -32,7 +32,7 @@ class ItemIndexTest extends TestCase
     public function purchased_items_show_sold_label_in_index_page()
     {
         $item = Item::firstOrFail();
-        $item->update(['status' => 1]);
+        $item->update(['status' => 2]);
 
         $response = $this->get(route('items.index'))->assertStatus(200);
 
@@ -46,8 +46,8 @@ class ItemIndexTest extends TestCase
      */
     public function user_cannot_see_their_own_items_in_index_page()
     {
-        $user = User::where('email', 'test@example.com')->firstOrFail();
-        $otherUser = User::where('email', 'other@example.com')->firstOrFail();
+        $user = User::where('email', 'test1@example.com')->firstOrFail();
+        $otherUser = User::where('email', 'test2@example.com')->firstOrFail();
 
         $myItem = Item::where('user_id', $user->id)->firstOrFail();
         $otherItem = Item::where('user_id', $otherUser->id)->firstOrFail();
@@ -97,7 +97,7 @@ class ItemIndexTest extends TestCase
         $user = User::factory()->create();
 
         $item = Item::firstOrFail();
-        $item->update(['status' => 1]);
+        $item->update(['status' => 2]);
 
         Favorite::create([
             'user_id' => $user->id,

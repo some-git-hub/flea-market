@@ -61,9 +61,9 @@ class StripeWebhookController extends Controller
             $session = $event->data->object;
 
             if (($paymentMethod) == '1') {
-                // コンビニ支払いの場合は「入金待ち/status=2」
+                // コンビニ支払いの場合は「入金待ち/status=1」
                 Item::where('id', $itemId)->update([
-                    'status'   => 2,
+                    'status'   => 1,
                     'buyer_id' => $userId,
                 ]);
 
@@ -87,9 +87,9 @@ class StripeWebhookController extends Controller
                     ]
                 );
 
-                // カード支払いの場合は「購入済み/status=1」
+                // カード支払いの場合は「購入済み/status=2」
                 Item::where('id', $itemId)->update([
-                    'status' => 1,
+                    'status' => 2,
                     'buyer_id' => $userId,
                 ]);
 
@@ -122,9 +122,9 @@ class StripeWebhookController extends Controller
                     ]
                 );
 
-                // コンビニ支払いの入金が確認された場合は「購入済み/status=1」
+                // コンビニ支払いの入金が確認された場合は「購入済み/status=2」
                 Item::where('id', $itemId)->update([
-                    'status' => 1,
+                    'status' => 2,
                     'buyer_id' => $userId,
                 ]);
 
@@ -139,8 +139,8 @@ class StripeWebhookController extends Controller
             $metadata = (array) $session->metadata;
 
             if (isset($itemId)) {
-                // コンビニ支払いの入金が期限内に確認されなかった場合は「在庫あり/status=0」
-                Item::where('id', $itemId)->where('status', 2)->update([
+                // コンビニ支払いの入金が期限内に確認されなかった場合は「出品中/status=0」
+                Item::where('id', $itemId)->where('status', 1)->update([
                     'status' => 0,
                     'buyer_id' => null,
                 ]);

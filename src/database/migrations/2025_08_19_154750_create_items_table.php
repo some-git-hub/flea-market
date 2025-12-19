@@ -16,14 +16,14 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->unsignedBigInteger('buyer_id')->nullable();
+            $table->foreignId('buyer_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('name');
-            $table->unsignedBigInteger('price');
+            $table->bigInteger('price');
             $table->string('brand')->nullable();
             $table->text('description');
             $table->string('item_image');
-            $table->unsignedTinyInteger('condition')->default(0);
-            $table->unsignedTinyInteger('status')->default(0);
+            $table->tinyInteger('condition')->default(0);
+            $table->tinyInteger('status')->default(0); // 出品中:0, 入金待ち:1, 取引中:2, 取引完了:3
             $table->timestamps();
         });
     }

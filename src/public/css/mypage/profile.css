@@ -19,13 +19,21 @@
     object-fit: cover;
 }
 
-.mypage-profile__user-name{
-    width: 34%;
-    font-size: 36px;
+.mypage-profile__user-info{
+    width: 42%;
     margin-right: 30px;
+}
+
+.mypage-profile__user-name{
+    margin: 10px 0;
+    font-size: 36px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.mypage-profile__user-rating{
+    margin: 0;
 }
 
 .mypage-profile__link-edit{
@@ -50,30 +58,24 @@
     margin-left: 15%;
 }
 
-.nav-tab__link-sell {
-    padding: 10px 20px;
-    color: #000;
-    text-decoration: none;
-}
-
-.nav-tab__buy {
+.nav-tab__buy,
+.nav-tab__trade {
     margin-left: 5%;
 }
 
-.nav-tab__link-buy {
-    padding: 10px 20px;
+.nav-tab__link {
+    padding: 10px 10px;
     color: #000;
     text-decoration: none;
 }
 
-.nav-tab__link-sell.active,
-.nav-tab__link-buy.active {
+.nav-tab__link.active{
     color: #f00;
 }
 
 .mypage-items {
     width: 84%;
-    padding-bottom: 80px;
+    padding-bottom: 20px;
     margin: 0 auto;
     display: flex;
     justify-content: left;
@@ -112,6 +114,33 @@
     z-index: 10;
 }
 
+.item-card__badge-notification{
+    width: 36px;
+    height: 36px;
+    padding-top: 3px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    z-index: 10;
+}
+
+.item-card__badge-notification-total{
+    width: 36px;
+    height: 36px;
+    color: #fff;
+    background-color: red;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 .item-name {
     width: 100%;
     padding-top: 10px;
@@ -121,4 +150,98 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+
+@media screen and (max-width: 1380px){
+
+    .mypage-profile {
+        margin-top: 80px;
+        margin-bottom: 80px;
+        margin-left: 18%;
+        display: flex;
+        align-items: center;
+    }
+
+    .mypage-profile__image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .mypage-profile__user-info {
+        width: 36%;
+        margin-right: 10px;
+    }
+
+    .mypage-profile__rating-star{
+        width: 40px;
+    }
+
+    .nav-tabs {
+        font-size: 22px;
+    }
+
+    .nav-tab__sell {
+        margin-left: 8%;
+    }
+
+    .item-card__badge-notification-total {
+        width: 32px;
+        height: 32px;
+        font-size: 20px;
+    }
+
+}
+
+
+
+
+@media screen and (max-width: 1080px) {
+
+    .item-card__badge-sold {
+        padding: 5px 16px;
+        color: #fff;
+        background-color: red;
+        font-size: 20px;
+        opacity: 0.8;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    .item-card {
+        width: 20%;
+        aspect-ratio: 4/5;
+        margin-top: 40px;
+        position: relative;
+    }
+
+    .mypage-profile {
+        margin-top: 80px;
+        margin-bottom: 80px;
+        margin-left: 10%;
+        display: flex;
+        align-items: center;
+    }
+
+    .mypage-profile__image {
+        margin-right: 40px;
+    }
+
+    .mypage-profile__user-info {
+        width: 38%;
+        margin-right: 10px;
+    }
+
+    .mypage-profile__link-edit {
+        padding: 8px 16px;
+        border: 2px solid #f00;
+        border-radius: 10px;
+        color: #f00;
+        font-size: 18px;
+        text-decoration: none;
+    }
+
 }

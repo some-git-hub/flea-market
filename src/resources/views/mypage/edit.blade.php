@@ -11,9 +11,9 @@
         @if(isset($user->address))
             @method('PUT')
         @endif
-        <h2 class="profile-form__heading">
+        <h1 class="profile-form__heading">
             プロフィール設定
-        </h2>
+        </h1>
         <div class="profile-form__container-image">
             <div class="profile-form__image-area">
                 <img id="preview" class="profile-form__image" src="{{ $previewSrc }}">
@@ -23,7 +23,7 @@
                     <label for="profile_image" class="profile-form__input-label">
                         画像を選択する
                     </label>
-                    <input type="file" name="profile_image" id="profile_image" accept="image/*" class="profile-form__input-image">
+                    <input type="file" name="profile_image" id="profile_image" accept=".png,.jpeg" class="profile-form__input-image">
                 </div>
                 @error('profile_image')
                 <div class="profile-form__error-message-image">

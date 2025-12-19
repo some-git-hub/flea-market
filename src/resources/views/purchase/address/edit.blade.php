@@ -9,14 +9,14 @@
     <form class="delivery-form__wrapper" action="{{ route('address.update', $item->id) }}" method="post">
         @csrf
         @method('PUT')
-        <h2 class="delivery-form__heading">
+        <h1 class="delivery-form__heading">
             住所の変更
-        </h2>
+        </h1>
         <div class="delivery-form__container">
-            <label class="delivery-form__label">
-                郵便番号
-            </label>
             <div class="delivery-form__inner">
+                <label class="delivery-form__label">
+                    郵便番号
+                </label>
                 <div class="delivery-form__input-area">
                     <input class="delivery-form__input" type="text" maxlength="8" name="postal_code" value="{{ old('postal_code', session("checkout_postal_code_{$user->id}_{$item->id}", $user->address?->postal_code)) }}">
                 </div>
@@ -28,10 +28,10 @@
             </div>
         </div>
         <div class="delivery-form__container">
-            <label class="delivery-form__label">
-                住所
-            </label>
             <div class="delivery-form__inner">
+                <label class="delivery-form__label">
+                    住所
+                </label>
                 <div class="delivery-form__input-area">
                     <input class="delivery-form__input" type="text" maxlength="255" name="address" value="{{ old('address', session("checkout_address_{$user->id}_{$item->id}", $user->address?->address)) }}">
                 </div>
@@ -43,10 +43,10 @@
             </div>
         </div>
         <div class="delivery-form__container">
-            <label class="delivery-form__label">
-                建物名
-            </label>
             <div class="delivery-form__inner">
+                <label class="delivery-form__label">
+                    建物名
+                </label>
                 <div class="delivery-form__input-area">
                     <input class="delivery-form__input" type="text" maxlength="255" name="building" value="{{ old('building', session("checkout_building_{$user->id}_{$item->id}", $user->address?->building)) }}">
                 </div>

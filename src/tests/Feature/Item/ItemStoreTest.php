@@ -25,7 +25,7 @@ class ItemStoreTest extends TestCase
 
         $response = $this->post(route('items.store'), [
             'user_id' => $user->id,
-            'item_image' => UploadedFile::fake()->image('test.png'),
+            'item_image' => UploadedFile::fake()->create('test.png', 100, 'image/png'),
             'name' => 'テスト商品',
             'brand' => 'テストブランド',
             'description' => '説明文',

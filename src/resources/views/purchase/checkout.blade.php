@@ -6,22 +6,23 @@
 
 @section('content')
 <div class="all__wrapper">
+    <h1 class="purchase-process__title">購入手続き</h1>
     <div class="purchase-info">
         <div class="item-info">
             <div class="item-info__image-area">
                 <img src="{{ asset('storage/' . $item->item_image) }}" alt="{{ $item->name }}" class="item-image">
             </div>
             <div class="item-info__detail">
-                <h4 class="item-info__name">
+                <h2 class="item-info__name">
                     {{ $item->name }}
-                </h4>
+                </h2>
                 <p class="item-info__price">
                     ￥<span class="item-info__price-number">{{ number_format($item->price) }}</span>
                 </p>
             </div>
         </div>
         <div class="payment-method">
-            <h3 class="payment-method__title">支払い方法</h3>
+            <h2 class="payment-method__title">支払い方法</h2>
             @if($item->price > 300000)
             <p class="payment-method__note">※ この商品は30万円を超えるため、コンビニ支払いは選択できません。</p>
             @endif
@@ -43,9 +44,9 @@
         </div>
         <div class="delivery-address">
             <div class="delivery-address__inner">
-                <h4 class="delivery-address__title">
+                <h2 class="delivery-address__title">
                     配達先
-                </h4>
+                </h2>
                 <a href="{{ route('address.edit', $item->id) }}" class="delivery-address__link-address-edit">
                     変更する
                 </a>
@@ -89,15 +90,15 @@
             <input type="hidden" name="address" value="{{ old('address', session("checkout_address_{$user->id}_{$item->id}", $user->address?->address)) }}">
             <input type="hidden" name="building" value="{{ old('building', session("checkout_building_{$user->id}_{$item->id}", $user->address?->building)) }}">
             @if(Auth::check() && Auth::id() === $item->user_id)
-            <button class="purchase-form__button-submit" disabled>購入不可</button>
-            <p class="purchase-form__note">※ 自分の商品は購入できません</p>
+                <button class="purchase-form__button-submit" disabled>購入不可</button>
+                <p class="purchase-form__note">※ 自分の商品は購入できません</p>
+            @elseif($item->status === 2 || $item->status === 3)
+                <button class="purchase-form__button-submit" disabled>Sold</button>
             @elseif($item->status === 1)
-            <button class="purchase-form__button-submit" disabled>Sold</button>
-            @elseif($item->status === 2)
-            <button class="purchase-form__button-submit" disabled>取引中</button>
-            <p class="purchase-form__note">※ 購入者からの入金待ちのため、現在は購入できません</p>
+                <button class="purchase-form__button-submit" disabled>取引中</button>
+                <p class="purchase-form__note">※ 購入者からの入金待ちのため、現在は購入できません</p>
             @else
-            <button class="purchase-form__button-submit" type="submit">購入する</button>
+                <button class="purchase-form__button-submit" type="submit">購入する</button>
             @endif
         </form>
     </div>

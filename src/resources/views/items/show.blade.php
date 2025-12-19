@@ -6,6 +6,7 @@
 
 @section('content')
 <div class="all__wrapper">
+    <h1 class="item-detail__title">商品詳細</h1>
     <div class="item-image-area">
         <img src="{{ asset('storage/' . $item->item_image) }}" alt="{{ $item->name }}" class="item-image">
         @if($item->status !== 0)
@@ -31,19 +32,19 @@
                 <button type="button" id="favorite-icon" class="favorite-button {{ auth()->user() && $item->favorites->contains('user_id', auth()->id()) ? 'liked' : '' }}">
                     <img class="item-reaction__logo" id="favorite-img" alt="favorite_logo"
                         src="{{ $item->favorites->contains('user_id', auth()->id())
-                            ? asset('storage/images/favorite_logo_active.png')
-                            : asset('storage/images/favorite_logo.png') }}">
+                            ? asset('images/favorite_logo_active.png')
+                            : asset('images/favorite_logo_inactive.png') }}">
                 </button>
                 @else
                 <a href="{{ route('login') }}">
                     <img class="item-reaction__logo" alt="favorite_logo"
-                        src="{{ asset('storage/images/favorite_logo.png') }}">
+                        src="{{ asset('images/favorite_logo_inactive.png') }}">
                 </a>
                 @endauth
                 <span id="favorite-count">{{ $item->favorites->count() }}</span>
             </form>
             <div class="item-reaction__contents">
-                <img class="item-reaction__logo" src="{{ asset('storage/images/comment_logo.png') }}" alt="comment_logo">
+                <img class="item-reaction__logo" src="{{ asset('images/comment_logo.png') }}" alt="comment_logo">
                 <span class="item-reaction__number" id="comment-count-reaction">{{ $item->comments->count() }}</span>
             </div>
         </div>
@@ -51,13 +52,13 @@
             <a href="{{ route('purchase.checkout', $item->id) }}" class="item-purchase__link-checkout">購入手続きへ</a>
         </div>
         <div class="item-description">
-            <h3 class="item-description__title">商品説明</h3>
+            <h2 class="item-description__title">商品説明</h2>
             <p class="item-description__content">{{ $item->description }}</p>
         </div>
         <div class="item-info">
-            <h3 class="item-info__title">商品の情報</h3>
+            <h2 class="item-info__title">商品の情報</h2>
             <div class="item-category">
-                <h4 class="item-category__title">カテゴリー</h4>
+                <h3 class="item-category__title">カテゴリー</h3>
                 <p class="item-category__contents">
                     @foreach($item->categories as $category)
                     <span class="item-category__content">{{ $category->name }}</span>
@@ -65,16 +66,16 @@
                 </p>
             </div>
             <div class="item-condition">
-                <h4 class="item-condition__title">商品の状態</h4>
+                <h3 class="item-condition__title">商品の状態</h3>
                 <p class="item-condition__content">
                     {{ config('const.item.conditions')[$item->condition] ?? '不明' }}
                 </p>
             </div>
         </div>
         <div class="item-comment">
-            <h3 class="item-comment__title">
+            <h2 class="item-comment__title">
                 コメント(<span id="comment-count-title">{{ $item->comments->count() }}</span>)
-            </h3>
+            </h2>
             <div class="item-comment__contents" id="comments">
                 @foreach($item->comments as $comment)
                 <div class="item-comment__content">
@@ -82,10 +83,10 @@
                         <img class="item-comment__user-image"
                             src="{{ $comment->user && $comment->user->profile_image
                                 ? asset('storage/' . $comment->user->profile_image)
-                                : asset('storage/images/default_user.png') }}">
-                        <h4 class="item-comment__user-name">
+                                : asset('images/default_user.png') }}">
+                        <h3 class="item-comment__user-name">
                             {{ $comment->user->name }}
-                        </h4>
+                        </h3>
                     </div>
                     <div class="item-comment__content-text">
                         {{ $comment->content }}
@@ -95,9 +96,9 @@
             </div>
             <form id="comment-form" class="comment-form" method="POST" action="{{ route('comment.store', $item->id) }}">
                 @csrf
-                <h4 class="comment-form__title">商品へのコメント</h4>
+                <h3 class="comment-form__title">商品へのコメント</h3>
                 <div class="comment-form__textarea-area">
-                    <textarea class="comment-form__textarea" maxlength="255" name="content" id="comment-content"></textarea>
+                    <textarea class="comment-form__textarea" name="content" id="comment-content"></textarea>
                 </div>
                 <div id="comment-error" class="comment-form__error-message"></div>
                 <div class="comment-form__button-area">
@@ -131,8 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             favoriteCount.textContent = data.count;
             favoriteImg.src = data.status === 'liked'
-                ? "{{ asset('storage/images/favorite_logo_active.png') }}"
-                : "{{ asset('storage/images/favorite_logo.png') }}";
+                ? "{{ asset('images/favorite_logo_active.png') }}"
+                : "{{ asset('images/favorite_logo_inactive.png') }}";
         });
     });
 
@@ -161,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <img class="item-comment__user-image"
                             src="${data.user.profile_image
                                     ? '/storage/' + data.user.profile_image
-                                    : '/storage/images/default_user.png'}">
+                                    : '/images/default_user.png'}">
                         <h4 class="item-comment__user-name">${data.user.name}</h4>
                     </div>
                     <div class="item-comment__content-text">${data.content}</div>

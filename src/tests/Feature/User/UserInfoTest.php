@@ -19,23 +19,23 @@ class UserInfoTest extends TestCase
      */
     public function profile_page_displays_user_info_and_items()
     {
-        $user = User::where('name', 'テストユーザー')->firstOrFail();
-        $this->actingAs($user);
+        $user1 = User::where('name', 'テストユーザー1')->firstOrFail();
+        $this->actingAs($user1);
 
-        $user->update([
+        $user1->update([
             'profile_image' => 'images/test.png',
         ]);
 
-        $createdItem1 = Item::where('user_id', $user->id)->firstOrFail();
-        $createdItem2 = Item::where('user_id', $user->id)->skip(1)->firstOrFail();
+        $createdItem1 = Item::where('user_id', $user1->id)->firstOrFail();
+        $createdItem2 = Item::where('user_id', $user1->id)->skip(1)->firstOrFail();
 
-        $otherUser = User::where('name', '他のユーザー')->firstOrFail();
+        $user2 = User::where('name', 'テストユーザー2')->firstOrFail();
 
-        $purchasedItem1 = Item::where('user_id', $otherUser->id)->firstOrFail();
-        $purchasedItem2 = Item::where('user_id', $otherUser->id)->skip(1)->firstOrFail();
+        $purchasedItem1 = Item::where('user_id', $user2->id)->firstOrFail();
+        $purchasedItem2 = Item::where('user_id', $user2->id)->skip(1)->firstOrFail();
 
-        $purchasedItem1->update(['buyer_id' => $user->id, 'status' => 1]);
-        $purchasedItem2->update(['buyer_id' => $user->id, 'status' => 1]);
+        $purchasedItem1->update(['buyer_id' => $user1->id, 'status' => 2]);
+        $purchasedItem2->update(['buyer_id' => $user1->id, 'status' => 2]);
 
         $deliveryAddress = DeliveryAddress::create([
             'postal_code' => '111-1111',
@@ -44,14 +44,14 @@ class UserInfoTest extends TestCase
         ]);
 
         Purchase::create([
-            'user_id' => $user->id,
+            'user_id' => $user1->id,
             'item_id' => $purchasedItem1->id,
             'delivery_address_id' => $deliveryAddress->id,
             'price' => $purchasedItem1->price,
             'payment_method' => 1,
         ]);
         Purchase::create([
-            'user_id' => $user->id,
+            'user_id' => $user1->id,
             'item_id' => $purchasedItem2->id,
             'delivery_address_id' => $deliveryAddress->id,
             'price' => $purchasedItem2->price,
@@ -60,7 +60,7 @@ class UserInfoTest extends TestCase
 
         $response = $this->get('/mypage?page=sell')->assertStatus(200);
 
-        $response->assertSee('テストユーザー');
+        $response->assertSee('テストユーザー1');
         $response->assertSee('/storage/images/test.png');
 
         $response->assertSee($createdItem1->name);

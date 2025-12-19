@@ -72,7 +72,7 @@ class PurchaseTest extends TestCase
             'payment_method' => 2,
         ]);
 
-        $item->update(['status' => 1]);
+        $item->update(['status' => 2]);
 
         $response = $this->get(route('items.index'))->assertStatus(200);
 
@@ -106,7 +106,7 @@ class PurchaseTest extends TestCase
 
         $item->update([
             'buyer_id' => $user->id,
-            'status' => 1,
+            'status' => 2,
         ]);
 
         $response = $this->get('/mypage?page=buy')->assertStatus(200);

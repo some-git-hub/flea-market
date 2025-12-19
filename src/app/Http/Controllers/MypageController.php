@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Item;
+use App\Models\Review;
+use App\Models\Message;
 
 class MypageController extends Controller
 {
@@ -16,21 +18,73 @@ class MypageController extends Controller
     public function show(Request $request)
     {
         $user = auth()->user();
+        $userId = $user->id;
+        $page = $request->input('page', 'sell');
 
         if ($user->profile_image) {
             $previewSrc = asset('storage/' . $user->profile_image);
         } else {
-            $previewSrc = asset('storage/images/default_user.png');
+            $previewSrc = asset('images/default_user.png');
         }
 
-        $page = $request->input('page', 'sell');
-
+        // ---- 出品した商品 ----
         $sellItems = $user->items()->get();
-        $buyItems = Item::where('buyer_id', $user->id)
-            ->whereIn('status', [1, 2])
+
+        // ---- 購入した商品 ----
+        $buyItems = Item::where('buyer_id', $userId)
+            ->where('status', '!=', 0)
             ->get();
 
-        return view('mypage.profile', compact('user', 'previewSrc', 'page', 'sellItems', 'buyItems'));
+        // ---- 取引中の商品 ----
+        $tradeItems = Item::where(function ($query) use ($userId) {
+
+            // ---- 取引が完了していない商品 ----
+            $query->where('status', 2)
+                ->where(function ($q) use ($userId) {
+                    $q->where('user_id', $userId)
+                        ->orWhere('buyer_id', $userId);
+                });
+            })
+
+            // ---- 取引完了後に取引相手の評価をしていない商品 ----
+            ->orWhere(function ($query) use ($userId) {
+                $query->where('status', 3)
+                    ->where(function ($q) use ($userId) {
+                        $q->where('user_id', $userId)
+                            ->orWhere('buyer_id', $userId);
+                    })
+                    ->whereDoesntHave('reviews', function ($q) use ($userId) {
+                        $q->where('reviewer_id', $userId);
+                    });
+            })
+
+            // 未読メッセージ数
+            ->withCount(['messages as unread_count' => function ($q) use ($userId) {
+                $q->where('user_id', '!=', $userId)
+                    ->whereNull('read_at');
+            }])
+
+            // 相手の最新メッセージ日時
+            ->withMax(['messages as partner_last_message_at' => function ($q) use ($userId) {
+                $q->where('user_id', '!=', $userId);
+            }], 'created_at')
+
+            // 未読・新着メッセージ順
+            ->orderByRaw('unread_count > 0 DESC')
+            ->orderByDesc('partner_last_message_at')
+            ->get();
+
+        $tradeItemIds = $tradeItems->pluck('id');
+
+        $totalUnreadCount = Message::whereIn('item_id', $tradeItemIds)
+            ->where('user_id', '!=', $userId)
+            ->whereNull('read_at')
+            ->count();
+
+        $averageRating = Review::where('reviewee_id', $user->id)->avg('rating');
+        $roundedRating = $averageRating ? round($averageRating) : null;
+
+        return view('mypage.profile', compact('user', 'previewSrc', 'page', 'sellItems', 'buyItems', 'tradeItems', 'totalUnreadCount', 'roundedRating'));
     }
 
 
@@ -44,7 +98,7 @@ class MypageController extends Controller
         if ($user->profile_image) {
             $previewSrc = asset('storage/' . $user->profile_image);
         } else {
-            $previewSrc = asset('storage/images/default_user.png');
+            $previewSrc = asset('images/default_user.png');
         }
 
         return view('mypage.edit', compact('user', 'previewSrc'));
