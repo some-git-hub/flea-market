@@ -164,7 +164,7 @@ class TradeController extends Controller
         ]);
 
         Mail::raw("
-            {$user->name}様
+            {$partner->name}様
 
             ご出品中の商品についての取引が完了いたしました。
 
