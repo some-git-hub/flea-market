@@ -7,22 +7,24 @@
 
 ## アプリケーション URL
 
-- 商品一覧画面 : http://localhost/
-- ログイン画面 : http://localhost/login/
-- phpMyAdmin : http://localhost:8080/
-- MailHog : http://localhost:8025/
+| 該当画面　　　　　　　　 | URL　　　　　　　　　　　　　　 |
+| ---------------------- | ---------------------------- |
+| トップ画面（商品一覧）　 | http://localhost/　　　　　　 |
+| ログイン画面　　　　　　 | http://localhost/login/　　　 |
+| phpMyAdmin　　　　　　　 | http://localhost:8080/　　　 |
+| MailHog　　　　　　　　 | http://localhost:8025/　　　　 |
 
 
 ## テストアカウント
 
-Email: **test@example.com**  
-Email: **test1@example.com**  
-Email: **test2@example.com**  
+Email: test@example.com  
+Email: test1@example.com  
+Email: test2@example.com  
 
 Password: **password**  
 
 > Seeder で３名のテストアカウントが作成されます。  
-> いずれも共通パスワード(**password**)です。  
+> いずれも共通パスワード（password）です。  
 
 
 ## 機能一覧
@@ -37,48 +39,34 @@ Password: **password**
 ### ゲストユーザー
 
 - 商品一覧の取得
-- 商品詳細の取得  
-
+- 商品詳細の取得
+&nbsp;
 - 商品の検索
 
 ### 認証済みユーザー
 
 - マイリスト一覧の取得
-
 &nbsp;
-
 - お気に入り商品の登録
 - コメントの送信
-
 &nbsp;
-
 - 商品の購入
 - 支払い方法の選択
 - 配送先の変更
-
 &nbsp;
-
 - 商品の出品
-
 &nbsp;
-
 - 取引チャットメッセージの送信
 - 送信済みメッセージの編集
 - 送信済みメッセージの削除
-
 &nbsp;
-
 - 取引相手の評価（取引完了後）
 - 他ユーザーからの平均評価の取得
 - 商品購入者への取引完了通知メールの送信
-
 &nbsp;
-
 - ユーザー情報の取得
 - ユーザー情報の編集
-
 &nbsp;
-
 - 出品した商品一覧の取得
 - 購入した商品一覧の取得
 - 取引中の商品一覧の取得
@@ -340,7 +328,7 @@ stripe trigger payment_intent.succeeded \
 - コンビニ支払いを選択した場合、一時的に「入金待ち(status=1)」になる。
 - Checkout セッションの有効期限は 3日後の23時59分となる。
 - 24時間以内に入金が確認できなかった場合、注文はキャンセルとなり「出品中(status=0)」に戻る。
-- 商品価格が120円未満または30万円超過の場合、コンビニ支払いは利用できない。
+- 商品価格が**120円未満**または**30万円超過**の場合、コンビニ支払いは利用できない。
 
 
 ### MailHog 環境構築
@@ -381,7 +369,7 @@ DB_USERNAME=root
 DB_PASSWORD=root
 ```
 
-3. テスト用DBを作成する。(パスワード:**root**)
+3. テスト用DBを作成する。（パスワード:**root**）
 
 ```bash
 docker-compose exec mysql bash
