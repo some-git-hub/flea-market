@@ -35,14 +35,29 @@
         <!-- 支払い方法 -->
         <div class="payment-method">
             <h2 class="payment-method__title">支払い方法</h2>
-            @if($item->price > 300000)
-                <p class="payment-method__note">※ この商品は30万円を超えるため、コンビニ支払いは選択できません。</p>
+
+            <!-- コンビニ支払い不可の注意書き -->
+            @if($item->price < 120)
+                <p class="payment-method__note">
+                    ※ 120円未満の商品はコンビニ支払いをご利用いただけません。
+                </p>
+            @elseif($item->price > 300000)
+                <p class="payment-method__note">
+                    ※ 30万円を超える商品はコンビニ支払いをご利用いただけません。
+                </p>
             @endif
+
+            <!-- 支払い方法の選択 -->
             <div class="payment-method__select-area">
                 <select class="payment-method__select" name="payment_method" id="payment_method_{{ $item->id }}">
-                    <option value="" disabled {{ session("checkout_payment_method_{$user->id}_{$item->id}") ? '' : 'selected' }} hidden>選択してください</option>
+                    <option value="" disabled {{ session("checkout_payment_method_{$user->id}_{$item->id}") ? '' : 'selected' }} hidden>
+                        選択してください
+                    </option>
                     @foreach (config('const.payment.methods') as $key => $label)
-                    <option value="{{ $key }}" class="payment-method__option" {{ session("checkout_payment_method_{$user->id}_{$item->id}") == $key ? 'selected' : '' }} @if($key == 1 && $item->price > 300000) disabled @endif>
+                    <option value="{{ $key }}" class="payment-method__option" {{ session("checkout_payment_method_{$user->id}_{$item->id}") == $key ? 'selected' : '' }}
+                        @if($key == 1 && ($item->price < 120 || $item->price > 300000))
+                            disabled
+                        @endif>
                         {{ $label }}
                     </option>
                     @endforeach
