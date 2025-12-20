@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\PurchaseController;

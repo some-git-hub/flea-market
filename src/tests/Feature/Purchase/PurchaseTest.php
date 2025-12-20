@@ -7,9 +7,7 @@ use App\Models\User;
 use App\Models\Item;
 use App\Models\Purchase;
 use App\Models\DeliveryAddress;
-use Mockery;
 use Stripe\Checkout\Session;
-use Illuminate\Support\Facades\App;
 
 class PurchaseTest extends TestCase
 {

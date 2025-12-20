@@ -6,7 +6,6 @@ namespace Tests\Feature\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Carbon;
 use Symfony\Component\DomCrawler\Crawler;
 use App\Models\User;
 use Tests\TestCase;
