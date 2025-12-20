@@ -17,11 +17,20 @@
 
 ## テストアカウント
 
-Email: test@example.com  
-Email: test1@example.com  
-Email: test2@example.com  
+### 商品データ（CO01～CO05）を出品したテストユーザー
 
-Password: **password**  
+Email: test1@example.com  
+Password : password  
+
+### 商品データ（CO06～CO10）を出品したテストユーザー
+
+Email: test2@example.com  
+Password: password  
+
+### 商品を出品していないテストユーザー
+
+Email: test@example.com  
+Password: password  
 
 > Seeder で３名のテストアカウントが作成されます。  
 > いずれも共通パスワード（password）です。  
